@@ -1,0 +1,15 @@
+{% extends "my_app/base.html" %}
+{% load staticfiles %}
+{% load bootstrap3 %}
+{% block body_block %}
+    <div class="container padding">
+        <div class="jumbotron">
+            <h2>Contact Us</h2>
+            <form method="POST">
+                {% csrf_token %}
+                {% bootstrap_form contact_form %}
+                <input type="submit" class="btn btn-primary" value="Submit">
+            </form>
+        </div>
+    </div>
+{% endblock %}

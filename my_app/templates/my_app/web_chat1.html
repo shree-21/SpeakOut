@@ -1,0 +1,110 @@
+{% extends "my_app/base.html" %}
+{% load staticfiles %}
+
+{% load notifications_tags %}
+{% block body_block %}
+        <div class="container padding">
+        <div class="jumbotron">
+            <h2>Connect to chat!</h2>
+            
+            <div id="sidebar">
+                <form action="GetSelected" method="POST">
+                    {% csrf_token %}
+                    {{ form }}
+                
+                    {% if user.patient_profile.is_patient %}
+                        <h4>Your Listeners:</h4>
+                        <select class="form-control" id="select" name="drop">
+                            <option selected="selected" value="none">Select a listener!</option>
+                        
+                            <!-- {% for listener in listeners %}
+                                <option value="{{ listener.user.username}}">{{ listener.user.username}}</option>
+                            {% endfor %} -->
+                            {% for listener in listeners %}
+                                <option value="{{listener_profile.user.id}}"
+                                    {% if listener == current_listener %}selected="selected"{% endif %}>
+                                    {{listener_profile.user.username}}
+                                </option>
+                            {% endfor %}
+                            
+                        </select>
+                        <input type="submit" value="Select">
+                </form>
+                    {% else %}
+                    <!-- <h4>Your contacts:</h4>
+                    <select class="form-control" id="select">
+                        <option value="none">connect</option>
+                        {% for patient in patients %}
+                            <option value="{{ patient_profile.user.id}}">{{ patient_profile.user.username}}</option>
+                        {% endfor %}
+                    </select>  -->
+                    <!-- this dropdown is not needed -->
+
+                    {% notifications_unread as unread_count %}
+
+                    {% if unread_count %}
+                        You have <strong>{{ unread_count }}</strong> unread notifications.
+                    {% endif %}
+                    
+                    {% live_notify_list %}
+                    <script src="{% static 'notifications/notify.js' %}" type="text/javascript"></script>
+                    {% register_notify_callbacks callbacks='fill_notification_list,fill_notification_badge' %}
+                    
+                    
+                    <!-- {% live_notify_list %} -->
+                    
+                    <hr>
+                    <!-- <a href="#" class="btn btn-primary" onclick="func();">Get Notifications</a>
+                    <input type="text" id="getmsg" size="65"> -->
+                    <script>
+                           
+                            function my_special_notification_callback(data) {
+                               
+                                for (var i=0; i < data.unread_list.length; i++) {
+                                    msg = data.unread_list[i].verb;
+                                    console.log(msg);         
+                                }
+                            }
+                            function func() {
+                                var message = document.getElementById("getmsg");
+                                document.getElementById("getmsg").value =  msg;
+                                var n = document.getElementById("getmsg").value
+                                return n;
+                                
+                            }
+                    </script>
+                    {% register_notify_callbacks callbacks='fill_notification_badge,my_special_notification_callback' %}
+                   
+                    
+                    
+                   
+                       
+                {% endif %}
+                <hr>
+                
+
+                <script>
+                    function generateChatHash() {
+                        return Math.floor(Math.random() * 0xFFFFFF).toString(16);   
+                    }   
+                    function myFunc() {
+                        var selected_option = document.getElementById('select').value;
+                        var connection = document.getElementById('url').value;
+                        // var l = document.getElementById('link');
+                        // l.href = this.href+ selected_option;
+                        var result = connection.concat("id=",selected_option);
+                        console.log(result);
+                        console.log(selected_option);
+                        console.log(connection);   
+                        return result;       
+                    }        
+                            
+                </script>
+            
+            
+               
+                    
+            </div>
+        </div>
+    </div>
+{% endblock %}

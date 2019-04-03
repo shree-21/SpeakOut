@@ -1,0 +1,21 @@
+{% extends "my_app/base.html" %}
+{% load staticfiles %}
+{% load bootstrap3 %}
+{% block body_block %}
+    <div class="container padding">
+        <div class="jumbotron">
+            <h2>Login</h2>
+            <form method="POST" action="{% url 'my_app:all_login' %}">
+                {% csrf_token %}
+                <label for="username">Username</label>
+                <input type="text" name="username">
+                <br><br>
+                <label for="password">Password</label>
+                <input type="password" name="password">
+                <br><br>
+                <input type="submit" class="btn btn-primary" value="login">
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

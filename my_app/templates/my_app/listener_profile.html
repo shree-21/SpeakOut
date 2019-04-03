@@ -1,0 +1,16 @@
+{% extends "my_app/base.html" %}
+{% load staticfiles %}
+{% load bootstrap3 %}
+{% block body_block %}
+    <div class="container padding">
+        <div class="jumbotron">
+            <h2>Listener Sign Up</h2>
+            <form method="POST">
+                {% csrf_token %}
+                {% bootstrap_form user_form %}
+                {% bootstrap_form listener_profile_form %}
+                <input type="submit" class="btn btn-primary" value="Submit">
+            </form>
+        </div>
+    </div>
+{% endblock %}

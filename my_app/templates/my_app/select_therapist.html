@@ -1,0 +1,37 @@
+{% extends "my_app/base.html" %}
+{% load staticfiles %}
+{% load bootstrap3 %}
+{% block body_block %}
+    <div class="container padding">
+        <div class="jumbotron">
+            <h2>Select</h2>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form }}
+                {% if user.patient_profile.is_patient %}
+                    <h4>Therapists:</h4>
+                    <select class="form-control" id="select" name="drop">
+                        <option selected="selected" value="none">Select a listener!</option>
+                        
+                        {% for therapist in therapists %}
+                            <option value="{{therapist.user.id}}"
+                                {% if therapist == current_therapists %}selected="selected"{% endif %}>
+                                    {{therapist.user.username}}
+                                </option>
+                        {% endfor %}
+                            
+                        </select><br>
+                        <input type="hidden" id="chathash" name="chathash">
+                        <input type="submit" value="Select" class="btn btn-primary">
+                {% endif %}
+               
+            </form>
+            <script>
+                const hash = Math.floor(Math.random() * 0xFFFFFF).toString(16);   
+                document.getElementById('chathash').value = hash;
+                   
+            </script>
+        </div>
+    </div>
+
+{% endblock %}

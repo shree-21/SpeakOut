@@ -1,0 +1,16 @@
+{% extends "my_app/base.html" %}
+{% load staticfiles %}
+{% load bootstrap3 %}
+{% block body_block %}
+    <div class="container padding">
+        <div class="jumbotron">
+            <h2>Profile</h2>
+            <form method="POST">
+                {% csrf_token %}
+                {% bootstrap_form edit_user_form %}
+                {% bootstrap_form edit_patient_profile_form %}
+                <input type="submit" class="btn btn-primary" value="Save Changes">
+            </form>
+        </div>
+    </div>
+{% endblock %}

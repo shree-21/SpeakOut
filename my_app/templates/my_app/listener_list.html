@@ -1,0 +1,36 @@
+{% extends "my_app/base.html" %}
+{% load staticfiles %}
+{% block body_block %}
+    <div class="container padding">
+        <div class="jumbotron">
+            <div class="w3-container">
+                <h2>Listeners</h2><br>
+                {% for listener in listeners %}
+                    <ul class="w3-ul w3-card-4" style="width:100%">
+                        <li><label>Username: </label>&nbsp;{{listener.user.username}}</li><br>
+                        <li><label>Email: </label>&nbsp;{{listener.user.email}}</li><br>
+                        <li><label>Categories: </label>&nbsp;{{listener.category.category_name}}</li><br>
+                        <li><label>Preferred Days: </label>&nbsp;{{listener.preferred_days}}</li><br>
+                        <li><label>Preferred Time: </label>&nbsp;{{listener.preferred_time}}</li><br>
+                    </ul>
+                    <hr>
+                {% endfor %}
+            </div>
+            <div class="w3-container">
+                <h2>Therapists</h2><br>
+                {% for therapist in therapists %}
+                    <ul class="w3-ul w3-card-4" style="width:100%">
+                        <li><label>Username: </label>&nbsp;{{therapist.user.username}}</li><br>
+                        <li><label>Email: </label>&nbsp;{{therapist.user.email}}</li><br>
+                        <li><label>Categories: </label>&nbsp;{{therapist.category.category_name}}</li><br>
+                        <li><label>Preferred Days: </label>&nbsp;{{therapist.preferred_days}}</li><br>
+                        <li><label>Preferred Time: </label>&nbsp;{{therapist.preferred_time}}</li><br>
+                        
+                        </ul>
+                        <hr>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+                

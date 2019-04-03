@@ -1,0 +1,21 @@
+{% extends "my_app/base.html" %}
+{% load staticfiles %}
+{% load bootstrap3 %}
+{% block body_block %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <div class="container padding grad bg-img">
+        <div class="jumbotron">
+            <h2>Related Blogs</h2><hr>
+            <div class="list-group">
+              <a href="https://medium.com/tag/depression" class="list-group-item">Depression</span></a>
+              <a href="https://medium.com/tag/social-anxiety" class="list-group-item">Social Anxiety</a>
+              <a href="https://medium.com/tag/relationships" class="list-group-item">Relationships</a>
+              <a href="https://medium.com/the-mission/how-successful-people-stay-calm-b1130f8ecc07" class="list-group-item">Stress</a>
+              <a href="https://medium.com/s/story/why-sleep-gets-worse-as-you-age-1e56feb8e067" class="list-group-item">Insomania</a>
+              <a href="https://medium.com/tag/loneliness" class="list-group-item">Loneliness</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
